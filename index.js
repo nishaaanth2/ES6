@@ -198,6 +198,8 @@ coomma()
 
 import fetch from "node-fetch";
 
+
+const apiUrl="https://syndication.twitter.com/settings?session_id=845e1cdfd255d46a404fcd36204c86b380388286"//"https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location"
 function getToplooCampers() {
     fetch(apiUrl)
     .then((r) => r.json())
@@ -211,8 +213,6 @@ getToplooCampers();
 
 
 //this is async and await daw, kannu theriyala
-
-const apiUrl="https://syndication.twitter.com/settings?session_id=845e1cdfd255d46a404fcd36204c86b380388286"//"https://geolocation.onetrust.com/cookieconsentpub/v1/geo/location"
 async function asgetToplooCampers() {
     const response = await fetch(apiUrl); 
     const json = await response.json();
@@ -220,4 +220,34 @@ async function asgetToplooCampers() {
 }
 asgetToplooCampers();
 
-    
+// Note: Promises are a clean way to implement async programming
+
+// Async Example
+
+function resolveAfter3Seconds() {
+    return new Promise (resolve => {
+        setTimeout(() => {
+            resolve('resolved');
+        },3000)
+    })
+}
+
+//usual method 
+              //--//
+// resolveAfter3Seconds().then((data) => {
+//     console.log(data);
+// })         
+              //--//
+
+// The difference is that in an async function, 
+// JavaScript will pause the function execution until the promise settles. 
+// With then(), the rest of the function will continue to execute but 
+// JavaScript won't execute the .then() callback until the promise settles.
+
+// async method
+async function getAsyncData() {
+    const result = await resolveAfter3Seconds();
+    console.log(result);
+}
+
+getAsyncData();
